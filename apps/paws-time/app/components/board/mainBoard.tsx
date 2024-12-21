@@ -49,11 +49,11 @@ export default function MainBoard() {
         />
 
         {/* 검색 버튼 */}
-        <CustomButton label="검색" onClick={() => {}} sizetype="normal" />
+        <CustomButton $label="검색" onClick={() => {}} $sizeType="long" />
 
         <CustomButton
-          label="새글 쓰기"
-          sizetype="normal"
+          $label="새글 쓰기"
+          $sizeType="long"
           onClick={() => toggleComponent("create")}
         />
       </form>
