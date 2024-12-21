@@ -14,7 +14,7 @@ type CardProps = {
   likes: number;
 };
 
-const CardWrapper = styled.div<{ state: CardState }>`
+const CardWrapper = styled.div<{ $state: CardState }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -29,16 +29,16 @@ const CardWrapper = styled.div<{ state: CardState }>`
   cursor: pointer;
 
   border: ${(props) =>
-    props.state === "primary"
+    props.$state === "primary"
       ? "none"
-      : props.state === "hover"
+      : props.$state === "hover"
       ? `double 1px ${theme.colors.comp.card.hover}`
       : `inset 3px ${theme.colors.comp.card.active}`};
 
   box-shadow: ${(props) =>
-    props.state === "hover"
+    props.$state === "hover"
       ? `${theme.shadow.hover}`
-      : props.state === "active"
+      : props.$state === "active"
       ? "inset 0 0 10px rgba(0, 0, 0, 0.2)"
       : `${theme.shadow.primary}`};
 
@@ -130,7 +130,7 @@ export function Card({
 
   return (
     <CardWrapper
-      state={state}
+      $state={state}
       onMouseEnter={() => setState("hover")}
       onMouseLeave={() => setState("primary")}
       onClick={() => setState("active")}

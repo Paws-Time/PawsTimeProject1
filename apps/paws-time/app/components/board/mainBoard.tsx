@@ -3,8 +3,8 @@ import { Card } from "../icons/card";
 import { InputField } from "../icons/input";
 import { CustomButton } from "../icons/button";
 import useStore from "@/app/hooks/store";
-import { fetchBoards } from "@/app/board/service/api";
 import { useEffect, useState } from "react";
+import { fetchBoards } from "@/app/service/api";
 
 export default function MainBoard() {
   const { toggleComponent } = useStore(); // Zustand 훅 사용

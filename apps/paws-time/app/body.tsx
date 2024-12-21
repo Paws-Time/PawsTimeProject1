@@ -31,15 +31,15 @@ export default function MainBody() {
         {/* 사이드바 토글 버튼 */}
         <div className="flex justify-start w1 px-4 mb-3 items-center justify-center">
           {isSidebarOpen ? (
-            <CustomButton label="◀" onClick={sidebarHandle} sizetype="mini" />
+            <CustomButton $label="◀" onClick={sidebarHandle} $sizeType="mini" />
           ) : (
-            <CustomButton label="▶" onClick={sidebarHandle} sizetype="mini" />
+            <CustomButton $label="▶" onClick={sidebarHandle} $sizeType="mini" />
           )}
         </div>
 
         {/* 보드로 이동 버튼 */}
         <div>
-          <CustomButton label="보드로 들어가기" onClick={navigateToBoard} />
+          <CustomButton $label="보드로 들어가기" onClick={navigateToBoard} />
         </div>
       </div>
 
