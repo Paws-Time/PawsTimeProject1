@@ -33,9 +33,11 @@ export default function MainBoard() {
           onChange={(e) => console.log(e.target.value)}
           className="border border-gray-300 mr-5 h-[40px] px-2"
         >
-          <option value="all">전체보기</option>
-          <option value="Photo">사진겔러리</option>
-          <option value="Review">리뷰겔러리</option>
+          <option value="default">전체보기</option>
+          <option value="TECH">기술</option>
+          <option value="LIFESTYLE">라이프스타일</option>
+          <option value="EDUCATION">교육</option>
+          <option value="ENTERTAINMENT">유머</option>
         </select>
 
         {/* 검색창 */}
@@ -85,6 +87,14 @@ export default function MainBoard() {
           >
             <option value="five">5개씩 조회</option>
             <option value="ten">10개씩 조회</option>
+          </select>
+          <select
+            value="all"
+            onChange={(e) => console.log(e.target.value)}
+            className="border border-gray-300 mr-5 h-[40px] px-2"
+          >
+            <option value="decs">내림차순</option>
+            <option value="asc">오름차순</option>
           </select>
         </div>
       </div>

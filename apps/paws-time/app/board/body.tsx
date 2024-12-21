@@ -17,7 +17,7 @@ export default function BoardBody() {
         {isSidebarOpen && <Sidebar />}
       </div>
       <div className="w-custom-width h-custom-height flex flex-row">
-        <div className="flex justify-start w1 px-4 mb-3">
+        <div className="flex justify-start w1 px-4 mb-3 items-center justify-center">
           {isSidebarOpen ? (
             <CustomButton label="◀" onClick={sidebarHandle} sizetype="mini" />
           ) : (
