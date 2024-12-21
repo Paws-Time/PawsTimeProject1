@@ -1,16 +1,25 @@
 "use client";
 import { theme } from "design-system/lib/theme";
-import { useState } from "react";
 import styled from "styled-components";
+import { useState } from "react";
 
 // 상태 타입 정의
 type CardState = "primary" | "hover" | "active";
+
+type CardProps = {
+  title: string;
+  description: string;
+  imageUrl: string;
+  reviews: number;
+  likes: number;
+};
 
 const CardWrapper = styled.div<{ state: CardState }>`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 314px;
+  width: 100%;
+  max-width: 350px;
   height: 258px;
   margin-bottom: 18px;
   border-radius: 15px;
@@ -19,7 +28,6 @@ const CardWrapper = styled.div<{ state: CardState }>`
   transition: all 0.3s ease;
   cursor: pointer;
 
-  /* 상태에 따른 동적 스타일링 */
   border: ${(props) =>
     props.state === "primary"
       ? "none"
@@ -55,12 +63,22 @@ const CardWrapper = styled.div<{ state: CardState }>`
 
   .image-field {
     margin: 0 15px;
-    width: 281px;
+    width: 330px;
     height: 140px;
     margin-left: 20px;
     border-radius: 15px;
     background-color: ${theme.colors.ref.base.white};
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
   }
 
   .description {
@@ -75,7 +93,7 @@ const CardWrapper = styled.div<{ state: CardState }>`
 
   .foot {
     display: flex;
-    width: 314px;
+    width: 100%;
     height: 16px;
     margin-top: 10px;
     font-size: ${theme.fontSize.text.xs};
@@ -97,30 +115,36 @@ const CardWrapper = styled.div<{ state: CardState }>`
   }
 `;
 
-export const Card = () => {
+export function Card({
+  title,
+  description,
+  imageUrl,
+  reviews,
+  likes,
+}: CardProps) {
   const [state, setState] = useState<CardState>("primary");
+
+  // 기본 이미지 설정
+  const defaultImage = "/logo.png";
+  const finalImageUrl = imageUrl || defaultImage;
 
   return (
     <CardWrapper
       state={state}
-      onMouseEnter={() => setState("hover")} // 마우스 오버 상태
-      onMouseLeave={() => setState("primary")} // 마우스가 떠날 때 초기화
-      onClick={() => setState("active")} // 클릭 상태
+      onMouseEnter={() => setState("hover")}
+      onMouseLeave={() => setState("primary")}
+      onClick={() => setState("active")}
     >
       <div className="call-menu">...</div>
-      <div className="title">Title: 제목이 들어갑니다.</div>
+      <div className="title">{title}</div>
       <div className="image-field">
-        <img
-          src="/logo.png"
-          alt="Example"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
+        <img src={finalImageUrl} alt={title} />
       </div>
-      <div className="description">간략 소개.</div>
+      <div className="description">{description}</div>
       <div className="foot">
-        <span className="reviews"> 💬 15 reviews</span>
-        <span className="like"> 👍 15 likes</span>
+        <span className="reviews">💬 {reviews} reviews</span>
+        <span className="like">👍 {likes} likes</span>
       </div>
     </CardWrapper>
   );
-};
+}

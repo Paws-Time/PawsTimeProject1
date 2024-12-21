@@ -1,5 +1,6 @@
 "use client";
 
+import useStore from "@/app/hooks/store";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import ReactQuill from "react-quill-new";
@@ -8,6 +9,7 @@ import "react-quill-new/dist/quill.snow.css";
 export const BoardWriteBody = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const { toggleComponent } = useStore();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,6 +35,7 @@ export const BoardWriteBody = () => {
       if (response.ok) {
         alert("글 작성 완료!");
         router.push("/board");
+        toggleComponent("board");
       } else {
         throw new Error("게시글 작성에 실패했습니다.");
       }
@@ -42,7 +45,7 @@ export const BoardWriteBody = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={"w-custom-boardw h-custom-boardh"}>
       <div>
         <label>제목:</label>
         <input
