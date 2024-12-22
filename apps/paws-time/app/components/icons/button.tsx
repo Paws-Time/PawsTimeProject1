@@ -6,15 +6,41 @@ import { theme } from "design-system/lib/theme";
 type ButtonState = "primary" | "hover" | "active" | "disabled";
 type SizeType = "mini" | "short" | "normal" | "long";
 
-type Props = {
+type StyledProps = {
   state?: ButtonState;
   label: string;
   sizetype?: SizeType; // 버튼 크기 타입
-  onClick?: () => void;
-} & React.DetailedHTMLProps<
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->;
+  // onClick?: () => void;
+}
+
+// * 코드도 문서.
+type Props = StyledProps & React.JSX.IntrinsicElements['button'] // ? Props 단순화.
+
+export const CustomButton = (props: Props) => {
+  const {
+    label,
+    onClick,
+    sizetype = "normal",
+    state = "primary",
+    ...rest
+  } = props; // 기본값 설정
+  const [currentState, setCurrentState] = useState<ButtonState>(state);
+
+  return (
+    <StyledButton
+      state={currentState}
+      sizetype={sizetype}
+      onClick={onClick}
+      onMouseEnter={() => setCurrentState("hover")} // 마우스 오버
+      onMouseLeave={() => setCurrentState("primary")} // 마우스 벗어남
+      onMouseDown={() => setCurrentState("active")} // 클릭
+      onMouseUp={() => setCurrentState("hover")} // 클릭 해제
+      {...rest}
+    >
+      {label}
+    </StyledButton>
+  );
+};
 
 const StyledButton = styled.button<{
   state: ButtonState;
@@ -64,29 +90,3 @@ const StyledButton = styled.button<{
     return sizeStyles[sizetype];
   }}
 `;
-
-export const CustomButton = (props: Props) => {
-  const {
-    label,
-    onClick,
-    sizetype = "normal",
-    state = "primary",
-    ...rest
-  } = props; // 기본값 설정
-  const [currentState, setCurrentState] = useState<ButtonState>(state);
-
-  return (
-    <StyledButton
-      state={currentState}
-      sizetype={sizetype}
-      onClick={onClick}
-      onMouseEnter={() => setCurrentState("hover")} // 마우스 오버
-      onMouseLeave={() => setCurrentState("primary")} // 마우스 벗어남
-      onMouseDown={() => setCurrentState("active")} // 클릭
-      onMouseUp={() => setCurrentState("hover")} // 클릭 해제
-      {...rest}
-    >
-      {label}
-    </StyledButton>
-  );
-};
