@@ -1,9 +1,6 @@
 "use client";
 
-import { useState } from "react";
 import { create } from "zustand";
-
-// const [first, setfirst] = useState(second);
 
 interface State {
   title: string;
@@ -11,8 +8,6 @@ interface State {
   createdAt: string;
   updatedAt: string;
   author: string;
-  // isSidebarOpen: boolean;
-  // toggleSidebar: () => void;
 }
 
 interface Action {
@@ -24,15 +19,16 @@ interface Action {
 }
 
 const usePostStore = create<State & Action>((set) => ({
-  isModalOpen: false,
   title: "",
   content: "",
   createdAt: "",
   updatedAt: "",
   author: "",
-  setTitle: (title) => set(title),
-  // toggleSidebar: () =>
-  //   set((state) => ({ isSidebarOpen: !state.isSidebarOpen })),
+  setTitle: (title) => set({ title }),
+  setContent: (content) => set({ content }),
+  setCreatedAt: (createdAt) => set({ createdAt }),
+  setUpdatedAt: (updatedAt) => set({ updatedAt }),
+  setAuthor: (author) => set({ author }),
 }));
 
 export default usePostStore;

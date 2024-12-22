@@ -231,6 +231,6 @@ const styles = {
     border: "1px solid #ddd",
     borderRadius: "5px",
   },
-};
+} as const;
 
 export default BoardDetailBody;

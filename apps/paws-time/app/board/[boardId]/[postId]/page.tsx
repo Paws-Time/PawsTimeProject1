@@ -3,7 +3,7 @@ import BoardDetailBody from "./body";
 const BoardDetailPage = async ({
   params,
 }: {
-  params: { boardId: string; postId: string };
+    params: Promise<{ boardId: string; postId: string }>;
 }) => {
   const { boardId, postId } = await params;
 

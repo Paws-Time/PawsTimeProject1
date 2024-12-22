@@ -210,6 +210,6 @@ const styles = {
     cursor: "pointer",
     transition: "background-color 0.2s",
   },
-};
+} as const;
 
 export default BoardWriteBody;
