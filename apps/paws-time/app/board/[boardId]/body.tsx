@@ -60,7 +60,7 @@ const BoardListBody = ({ boardId }: { boardId: string }) => {
     const fetchPosts = async () => {
       try {
         const response = await fetch(
-          `http://43.200.46.13:8080/post/posts?boardId=${boardId}&keyword=${keyword}&page=${page}&size=${size}&sort=${sort}`
+          `http://localhost:8080/post/posts?boardId=${boardId}&keyword=${keyword}&page=${page}&size=${size}&sort=${sort}`
         );
 
         if (!response.ok) {
